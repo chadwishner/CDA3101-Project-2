@@ -36,6 +36,7 @@ main:
 	mov x12, #2
 	mov x13, #31
 	mov w14, #49
+
 loop:
 	
 	#load x10 with either a 0 or 1 for the binary reprentation of the smallest digit
@@ -74,7 +75,11 @@ printbinary:
 	
 	#print the binary output
 	ldr x0, =stringread
-	mov x1, x11
+	
+	#fix x13 to point to the right character, and print out from that character onward
+	add x13, x13, #1
+	add x1, x11, x13
+
 	bl printf
 
 	#flush
